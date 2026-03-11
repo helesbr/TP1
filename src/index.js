@@ -49,6 +49,11 @@ function preload() {
   });
   this.load.image("img_etoile", "src/assets/star.png");
   this.load.image("img_bombe", "src/assets/bomb.png");
+  // chargement tuiles de jeu
+this.load.image("Phaser_tuilesdejeu", "src/assets/tuilesJeu.png");
+
+// chargement de la carte
+this.load.tilemapTiledJSON("carte", "src/assets/map.json");  
 }
 
 /***********************************************************************/
@@ -116,6 +121,14 @@ function create() {
   groupe_bombes = this.physics.add.group();
   this.physics.add.collider(groupe_bombes, groupe_plateformes);
   this.physics.add.collider(player, groupe_bombes, chocAvecBombe, null, this);
+  // chargement de la carte
+const carteDuNiveau = this.add.tilemap("carte");
+
+// chargement du jeu de tuiles
+const tileset = carteDuNiveau.addTilesetImage(
+          "tuiles_de_jeu",
+          "Phaser_tuilesdejeu"
+        ); 
 }
 /***********************************************************************/
 /** FONCTION UPDATE 
